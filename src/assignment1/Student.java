@@ -50,10 +50,10 @@ public class Student
     {
         String studentInfo="";
         
-        studentInfo+= "ID = " + idNumber + "\n";
-        studentInfo+= "FName = " + firstName + "\n";
-        studentInfo+= "LName = " + lastName +"\n";
-        studentInfo+= "Age = " + age + "\n";
+        studentInfo+= "ID = " + this.idNumber + "\n";
+        studentInfo+= "FName = " + this.firstName + "\n";
+        studentInfo+= "LName = " + this.lastName +"\n";
+        studentInfo+= "Age = " + this.age + "\n";
         
         return studentInfo;
     }

@@ -45,11 +45,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         emptyButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        pushButton = new javax.swing.JButton();
+        popButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        clearStackButton = new javax.swing.JButton();
+        printButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea = new javax.swing.JTextArea();
         showTopButton = new javax.swing.JButton();
@@ -63,20 +63,30 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Push");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        pushButton.setText("Push");
+        pushButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                pushButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Pop");
+        popButton.setText("Pop");
+        popButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Search");
+        searchButton.setText("Search");
 
-        jButton5.setText("Clear");
+        clearStackButton.setText("Clear");
+        clearStackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearStackButtonActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("Print");
+        printButton.setText("Print");
 
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
@@ -99,15 +109,15 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(emptyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(pushButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(popButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
+                        .addComponent(clearStackButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
+                        .addComponent(printButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(showTopButton)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -122,11 +132,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emptyButton)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
+                    .addComponent(pushButton)
+                    .addComponent(popButton)
+                    .addComponent(searchButton)
+                    .addComponent(clearStackButton)
+                    .addComponent(printButton)
                     .addComponent(showTopButton))
                 .addGap(24, 24, 24))
         );
@@ -136,10 +146,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void emptyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyButtonActionPerformed
         // TODO add your handling code here:
-        /*boolean empty =  studentStack.isEmpty();
-        jTextArea.setText(studentStack.isEmpty());*/
-       
-       
         if(studentStack.size()==0)
         {
             jTextArea.append("True \n");
@@ -154,16 +160,31 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_emptyButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void pushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pushButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_pushButtonActionPerformed
 
     private void showTopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTopButtonActionPerformed
         // TODO add your handling code here:
         
         jTextArea.append(student.printStudentDetails());
+        jTextArea.append("------------------ \n");
         
     }//GEN-LAST:event_showTopButtonActionPerformed
+
+    private void clearStackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStackButtonActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_clearStackButtonActionPerformed
+
+    private void popButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popButtonActionPerformed
+        // TODO add your handling code here:
+        studentStack.pop();
+        jTextArea.append("POP has occurred! \n");
+        jTextArea.append("------------------ \n");
+        
+    }//GEN-LAST:event_popButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,14 +222,14 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearStackButton;
     private javax.swing.JButton emptyButton;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea;
+    private javax.swing.JButton popButton;
+    private javax.swing.JButton printButton;
+    private javax.swing.JButton pushButton;
+    private javax.swing.JButton searchButton;
     private javax.swing.JButton showTopButton;
     // End of variables declaration//GEN-END:variables
 }
