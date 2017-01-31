@@ -15,7 +15,7 @@ public class Student
     private int idNumber;
     private String firstName;
     private String lastName;
-    private int[] examResults;
+    private int[] examResults = new int[6];
     
     
     public Student(int idNum, String fName, String lName, int age, int[] examRes)
@@ -25,7 +25,36 @@ public class Student
         lastName=lName;
         this.age=age;
         
+        for(int i=0; i<examResults.length;i++)
+        {
+            examResults[i]=examRes[i];
+        }
     }
     
     
+    public Student()
+    {
+        this.idNumber=123456;
+        this.firstName="Bob";
+        this.lastName="Bush";
+        this.age=18;
+        examResults[0] = 80;
+        examResults[1] = 76;
+        examResults[2] = 90;
+        examResults[3] = 85;
+        examResults[4] = 88;
+        examResults[5] = 79;
+    }
+    
+    public String printStudentDetails()
+    {
+        String studentInfo="";
+        
+        studentInfo+= "ID = " + idNumber + "\n";
+        studentInfo+= "FName = " + firstName + "\n";
+        studentInfo+= "LName = " + lastName +"\n";
+        studentInfo+= "Age = " + age + "\n";
+        
+        return studentInfo;
+    }
 }

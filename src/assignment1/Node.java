@@ -21,8 +21,10 @@ public Node(Object e, Node n) {
     next = n;
   } 
 
-    Node() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Node() 
+    {
+        element=element;
+        next=next;
     }
 
     public void setElement(Object newElem) 

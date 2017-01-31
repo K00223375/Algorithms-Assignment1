@@ -28,7 +28,7 @@ public class LinkedStack
         if (top == null)
             return true;
          else
-	        return false;
+	    return false;
     }
 
 public Object top( ) {  // Return the top stack element
