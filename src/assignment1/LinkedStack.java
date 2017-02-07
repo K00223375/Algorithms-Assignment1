@@ -13,8 +13,7 @@ public class LinkedStack {
 
     private Node top;         // reference to the top node
     private int size;  // number of elements in the stack
-    //private Node pTemp;
-    
+
     public LinkedStack() {     	// Initialize the stack
         top = null;
         size = 0;
@@ -49,8 +48,7 @@ public class LinkedStack {
         n.setNext(top);
         top = n;
         size++;
-        //pTemp = top;
-        
+
     }
 
     public String pop() {
@@ -62,7 +60,7 @@ public class LinkedStack {
         temp = top.getElement();
         top = top.getNext();       // adjust the top node
         size--;
-        //pTemp = top;
+
         return temp;
     }
 
@@ -70,13 +68,34 @@ public class LinkedStack {
         this.size = 0;
     }
 
-    /*public String printStack() {
-        
-        //pTemp = top;
+    public String printStack() {
+
+        Node pTemp = top;
         //String tempInfo=pTemp.getElement();
-       // pTemp.getNext();
-        S//tring tempInfo=pTemp.getElement();
-        
+        String tempInfo = "";
+        while (pTemp != null) {
+            tempInfo += pTemp.getElement() + "\n";
+
+            pTemp = pTemp.getNext();
+        }
         return tempInfo;
-    }*/
+    }
+
+    public boolean searchStack(String lastName)
+    {
+        Node tempPtr = top;
+        while (tempPtr != null) 
+        {
+            if(tempPtr.getElement().contains(lastName))
+            {
+                return true;
+            }
+            else
+            {
+               tempPtr=tempPtr.getNext();
+            }
+        }
+        return false;
+    }
+    
 }

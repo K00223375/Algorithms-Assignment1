@@ -25,15 +25,13 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
 
         int[] a = {78, 89, 90, 12, 78, 98};
-
+        
         student = new Student(17123, "Al", "Stew", 18, a);
         student2 = new Student(12345, "Bob", "Bush", 22, a);
         studentStack = new LinkedStack();
-
         studentStack.push(student);
         studentStack.push(student2);
 
-        //student.printStudentDetails();
     }
 
     /**
@@ -79,6 +77,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         clearStackButton.setText("Clear");
         clearStackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -174,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
         String fName = input;
 
         input = JOptionPane.showInputDialog("Input Last Name: ");
-        String lName = input;
+        String lName = input.toUpperCase();
 
         input = JOptionPane.showInputDialog("Input Age: ");
         int age = Integer.parseInt(input);
@@ -186,6 +189,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         student = new Student(idNum, fName, lName, age, examRes);
         studentStack.push(student);
+        jTextArea.append("New Student Details have been added to the Top of the Stack! \n");
+        jTextArea.append("------------------ \n");
 
     }//GEN-LAST:event_pushButtonActionPerformed
 
@@ -224,18 +229,41 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         // TODO add your handling code here:
+        String output="";
         if (studentStack.size() <= 0) {
             jTextArea.append("Stack is empty! No Student Details to Print! \n");
             jTextArea.append("------------------ \n");
         } else {
-            for (int i = studentStack.size(); i > 0; i--) {
+           
+            jTextArea.append(studentStack.printStack());
+            jTextArea.append("------------------ \n");
 
-                //jTextArea.append(studentStack.printStack());
-                jTextArea.append("------------------ \n");
-            }
         }
     }//GEN-LAST:event_printButtonActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        if (studentStack.size() == 0) {
+            jTextArea.append("Stack is empty! \n");
+            jTextArea.append("------------------ \n");
+
+        } else {
+            String input = JOptionPane.showInputDialog("Search for student by Lastname: ");
+            String lName = input.toUpperCase();
+            if(studentStack.searchStack(lName)==true)
+            {
+                jTextArea.append(lName+ " is in the Stack! \n");
+                jTextArea.append("------------------ \n");
+            }
+            else
+            {
+                jTextArea.append(lName + " Not found in the Stack! \n");
+                jTextArea.append("------------------ \n");
+            }
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */

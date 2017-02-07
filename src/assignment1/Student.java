@@ -20,7 +20,7 @@ public class Student {
     public Student(int idNum, String fName, String lName, int age, int[] examRes) {
         this.idNumber = idNum;
         this.firstName = fName;
-        this.lastName = lName;
+        this.lastName = lName.toUpperCase();
         this.age = age;
 
         for (int i = 0; i < examResults.length; i++) {
@@ -31,7 +31,7 @@ public class Student {
     public Student() {
         this.idNumber = 123456;
         this.firstName = "Bob";
-        this.lastName = "Bush";
+        this.lastName = "Bush".toUpperCase();
         this.age = 21;
         examResults[0] = 80;
         examResults[1] = 76;
@@ -43,12 +43,17 @@ public class Student {
 
     public String printStudentDetails() {
         String studentInfo = "";
-
+        String studentExams="";
+        
         studentInfo += "ID = " + this.idNumber + "\n";
         studentInfo += "FName = " + this.firstName + "\n";
         studentInfo += "LName = " + this.lastName + "\n";
         studentInfo += "Age = " + this.age + "\n";
-
-        return studentInfo;
+        for(int i=0; i<examResults.length;i++)
+        {
+            studentExams+= "Exam " + (i + 1)+": "+examResults[i]+"\n";
+        }
+        
+        return studentInfo+studentExams;
     }
 }
