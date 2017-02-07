@@ -5,34 +5,35 @@
  */
 package assignment1;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author K00223375
  */
 public class MainFrame extends javax.swing.JFrame {
-    
+
     public LinkedStack studentStack;
     public Student student;
     public Student student2;
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        
-        int[] a = {78,89,90,12,78,98};
-        
-        student = new Student(17123, "Al", "Stew", 18, a); 
-        student2 = new Student();
+
+        int[] a = {78, 89, 90, 12, 78, 98};
+
+        student = new Student(17123, "Al", "Stew", 18, a);
+        student2 = new Student(12345, "Bob", "Bush", 22, a);
         studentStack = new LinkedStack();
-        
+
         studentStack.push(student);
         studentStack.push(student2);
-        
-        
-        System.out.println(studentStack.size());
-        student.printStudentDetails();
-        
+
+        //student.printStudentDetails();
     }
 
     /**
@@ -87,6 +88,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
@@ -146,45 +152,89 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void emptyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emptyButtonActionPerformed
         // TODO add your handling code here:
-        if(studentStack.size()==0)
-        {
+        if (studentStack.size() == 0) {
             jTextArea.append("True \n");
             jTextArea.append("------------------ \n");
-            
-        }
-        else
-        {
-            jTextArea.append("Flase! Size of the stack is "+studentStack.size()+"\n");
+
+        } else {
+            jTextArea.append("Flase! Size of the stack is " + studentStack.size() + "\n");
             jTextArea.append("------------------ \n");
         }
-        
+
     }//GEN-LAST:event_emptyButtonActionPerformed
 
     private void pushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pushButtonActionPerformed
         // TODO add your handling code here:
+        int[] examRes = new int[6];
+
+        String input = JOptionPane.showInputDialog("Input Student ID: ");
+        int idNum = Integer.parseInt(input);
+
+        input = JOptionPane.showInputDialog("Input First Name: ");
+        String fName = input;
+
+        input = JOptionPane.showInputDialog("Input Last Name: ");
+        String lName = input;
+
+        input = JOptionPane.showInputDialog("Input Age: ");
+        int age = Integer.parseInt(input);
+
+        for (int i = 0; i < 6; i++) {
+            input = JOptionPane.showInputDialog("Input Exam Result for Class " + (i + 1) + " : ");
+            examRes[i] = Integer.parseInt(input);
+        }
+
+        student = new Student(idNum, fName, lName, age, examRes);
+        studentStack.push(student);
+
     }//GEN-LAST:event_pushButtonActionPerformed
 
     private void showTopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTopButtonActionPerformed
         // TODO add your handling code here:
-        
-        jTextArea.append(student.printStudentDetails());
-        jTextArea.append("------------------ \n");
-        
+        if (studentStack.size() <= 0) {
+            jTextArea.append("Stack is empty! \n");
+            jTextArea.append("------------------ \n");
+        } else {
+
+            jTextArea.append(studentStack.top());
+            jTextArea.append("------------------ \n");
+        }
+
     }//GEN-LAST:event_showTopButtonActionPerformed
 
     private void clearStackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStackButtonActionPerformed
         // TODO add your handling code here:
-        
-        
+        studentStack.setSize();
+        jTextArea.append("Stack has been cleared! \n");
+        jTextArea.append("------------------ \n");
     }//GEN-LAST:event_clearStackButtonActionPerformed
 
     private void popButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popButtonActionPerformed
         // TODO add your handling code here:
-        studentStack.pop();
-        jTextArea.append("POP has occurred! \n");
-        jTextArea.append("------------------ \n");
-        
+        if (studentStack.size() <= 0) {
+            jTextArea.append("Stack is empty! No POP has occurred! \n");
+            jTextArea.append("------------------ \n");
+        } else {
+            studentStack.pop();
+            jTextArea.append("POP has occurred! \n");
+            jTextArea.append("------------------ \n");
+        }
+
     }//GEN-LAST:event_popButtonActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        // TODO add your handling code here:
+        if (studentStack.size() <= 0) {
+            jTextArea.append("Stack is empty! No Student Details to Print! \n");
+            jTextArea.append("------------------ \n");
+        } else {
+            for (int i = studentStack.size(); i > 0; i--) {
+
+                //jTextArea.append(studentStack.printStack());
+                jTextArea.append("------------------ \n");
+            }
+        }
+    }//GEN-LAST:event_printButtonActionPerformed
 
     /**
      * @param args the command line arguments
